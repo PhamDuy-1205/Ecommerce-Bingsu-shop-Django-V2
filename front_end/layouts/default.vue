@@ -2,7 +2,7 @@
     <div class="header-layout">
         <header_navbar />
     </div>
-    <div class="body-layout">
+    <div class="body-layout px-[1rem] md:px-[3rem]">
         <slot />
     </div>
 </template>
@@ -15,6 +15,8 @@
 
 .body-layout{
     width: 100%;
-    padding: 0px 3rem;
+    height: fit-content;
+    // padding: 0px 3rem;
+    background-color: #F5F5F5;
 }
 </style>
