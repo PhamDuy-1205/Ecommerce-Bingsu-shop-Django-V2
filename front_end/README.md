@@ -1,9 +1,9 @@
-### Cài môi trường
+### Install Environment
 ```c
-- npm install
-- npm install @headlessui/vue
-- npm i @heroicons/vue
-- npm install -D sass
+npm install
+npm install @headlessui/vue
+npm i @heroicons/vue
+npm install -D sass
 ```
 
 ## Development Server
