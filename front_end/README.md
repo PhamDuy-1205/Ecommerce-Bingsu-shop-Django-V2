@@ -1,10 +1,13 @@
-### Install Environment
+## Install Environment
+
+- Trong thư mục front_end
 ```c
 npm install
 npm install @headlessui/vue
 npm i @heroicons/vue
 npm install -D sass
 ```
+
 
 ## Development Server
 

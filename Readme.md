@@ -8,4 +8,10 @@
 
 - Sản phẩm được lấy thiết kế từ: [www.free-css.com](https://www.free-css.com/free-css-templates/page280/multishop)
 
-- Nguồn Icon: [flaticon.com](https://www.flaticon.com/)
+- Nguồn Icon:
+
+```c
+[flaticon.com](https://www.flaticon.com/)
+
+[icons8.com](https://icons8.com/icons/)
+```

@@ -1,5 +1,5 @@
 <template lang="pug">
-#home-page(class="flex flex-col")
+#home-page(class="flex flex-col select-none")
     .part-01(class="h-fit w-full flex flex-col md:flex-row")
         .left(class="w-full md:w-[60%] h-[400px] md:h-[440px] mb-[2rem] md:mb-0 md:mr-[2rem] border-[2px]")
         .right(class="md:w-[40%]")
@@ -42,20 +42,20 @@
                     .vote-star(class="flex")
                         img(v-for="item in 5" src="@/assets/icons/yellow-star.png" class="w-[20px] mx-[3px]")
 
-                
+
 
     .part-05(class="flex mb-[5rem]")
     .part-06(class="flex flex-col mb-[5rem]")
         span.title() RECENT PRODUCTS
-        .categories-container(class="mt-[1rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
-            .item-container(v-for="item in 4" class="w-fit flex flex-col bg-white p-[20px] hover:border-black hover:border-[2px] hover:cursor-pointer")
-                .top(class="flex justify-center items-center")
-                    img(src="@/assets/images/product-1.jpg" class="w-full h-full")
-                .bottom(class="flex justify-center items-center flex-col py-[10px] text-[#3D464D] font-[500]")
-                    span(class="text-[1rem]") Product Name
-                    span(class="text-[1.25rem]") 123.000
-                    .vote-star(class="flex")
-                        img(v-for="item in 5" src="@/assets/icons/yellow-star.png" class="w-[20px] mx-[3px]")
+        //- .categories-container(class="mt-[1rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
+        //-     .item-container(v-for="item in 4" class="w-fit flex flex-col bg-white p-[20px] hover:border-black hover:border-[2px] hover:cursor-pointer")
+        //-         .top(class="flex justify-center items-center")
+        //-             img(src="@/assets/images/product-1.jpg" class="w-full h-full")
+        //-         .bottom(class="flex justify-center items-center flex-col py-[10px] text-[#3D464D] font-[500]")
+        //-             span(class="text-[1rem]") Product Name
+        //-             span(class="text-[1.25rem]") 123.000
+        //-             .vote-star(class="flex")
+        //-                 img(v-for="item in 5" src="@/assets/icons/yellow-star.png" class="w-[20px] mx-[3px]")
     .part-07(class="flex")
 </template>
 

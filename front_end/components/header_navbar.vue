@@ -50,15 +50,8 @@
                     .left-mini-01-item-02()
                         img(src="@/assets/icons/arrow-down-sign-to-navigate.png" class="w-[20px] mr-[0.5rem]")
                 .left-mini-01-container-list(class="absolute w-[22.7%] flex flex-col mt-[65px]" v-show="categoryDisplay" @click="toggleDisplay('categoryDisplay')")
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Shirts
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Jeans
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Swimwear
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Sleepwear
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Sportswear
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Jumpsuits
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Blazers
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Jackets
-                    NuxtLink(class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer") Shoes
+                    NuxtLink(v-for="category in categories" class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer" to="/shop") {{ category }}
+
                 .left-mini-02-container(class="flex justify-center items-center px-[2.5rem]")
                     NuxtLink(class="text-white mr-[1rem] hover:cursor-pointer hover:text-[#FFD333]" to="/home") Home
                     NuxtLink(class="text-white mr-[1rem] hover:cursor-pointer hover:text-[#FFD333]" to="/shop") Shop
@@ -123,6 +116,7 @@ const languageDisplay = ref(false)
 const categoryDisplay = ref(false)
 const money = ref('VNĐ')
 const language = ref('VN')
+const categories = ['Shirts', 'Jeans', 'Swimwear', 'Sleepwear', 'Sportswear', 'Jumpsuits', 'Blazers', 'Jackets', 'Shoes']
 
 function moneyLoader() {
     const loadMoney = window.localStorage.getItem('money')
