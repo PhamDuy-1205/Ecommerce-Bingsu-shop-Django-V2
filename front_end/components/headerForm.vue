@@ -215,7 +215,6 @@ $white: #FFFFFF;
 #navbar{
     font-size: 1rem;
     font-family: "Roboto", sans-serif;
-    margin-bottom: 1.8rem;
     user-select: none;
 }
 //========================================  Desktop End  ========================================

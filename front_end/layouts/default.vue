@@ -1,9 +1,12 @@
 <template>
     <div class="header-layout">
-        <header_navbar />
+        <headerForm />
     </div>
-    <div class="body-layout px-[1rem] md:px-[3rem]">
+    <div class="body-layout px-[1rem] py-[1.8rem] md:px-[3rem]">
         <slot />
+    </div>
+    <div class="footer-layout">
+        <footerForm />
     </div>
 </template>
 
