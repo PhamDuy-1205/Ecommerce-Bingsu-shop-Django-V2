@@ -49,8 +49,8 @@
                         span(class="font-[700] text-[#3D464D]") Categories
                     .left-mini-01-item-02()
                         img(src="@/assets/icons/arrow-down-sign-to-navigate.png" class="w-[20px] mr-[0.5rem]")
-                .left-mini-01-container-list(class="absolute w-[22.7%] flex flex-col mt-[65px]" v-show="categoryDisplay" @click="toggleDisplay('categoryDisplay')")
-                    NuxtLink(v-for="category in categories" class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer" to="/shop") {{ category }}
+                .left-mini-01-container-list(class="absolute w-[22.7%] flex flex-col mt-[65px] z-[1]" v-show="categoryDisplay" @click="toggleDisplay('categoryDisplay')")
+                    NuxtLink(v-for="category in categories" class="w-[100%] min-w-[250px] h-[40px] flex justify-between items-center border-[1px] px-[25px] bg-white hover:bg-[#e5e7eb] hover:cursor-pointer" to="/shop") {{ category.name }}
 
                 .left-mini-02-container(class="flex justify-center items-center px-[2.5rem]")
                     NuxtLink(class="text-white mr-[1rem] hover:cursor-pointer hover:text-[#FFD333]" to="/home") Home
@@ -91,7 +91,7 @@
                 .cart(class="min-w-[55px] flex justify-center items-center text-[0.75rem] font-[700]")
                     img(src="@/assets/icons/black-shopping-cart.png" class="w-[23px]")
                     span(class=" rounded-[50%] border-[2px] border-[#3D464D] px-[0.5em]") 0
-        .line-02-container(class="w-full px-[15px] py-[10px] bg-[#3D464D] flex justify-between items-center flex-col")
+        .line-02-container(class="w-full px-[15px] py-[10px] bg-[#3D464D] flex justify-center items-start flex-col")
             .mini-container-01(class="w-full flex")
                 NuxtLink(class="w-[80%]" to="/home")
                     span(class="text-[1.8rem] font-[700] px-[0.5rem] bg-white text-[#3D464D]") BINGSU
@@ -100,9 +100,9 @@
                     .right-mini(class="flex justify-center items-center border-[2px] border-double rounded-[5px]")
                         img(src="@/assets/icons/menu-yellow.png" class="w-[30px] mx-[10px] my-[2px]")
 
-            NuxtLink(class="w-full font-[600] text-white py-[5px]" @click="toggleMenuDisplay" v-show="menuDisplay" to="/home") Home
-            NuxtLink(class="w-full font-[600] text-white py-[5px]" @click="toggleMenuDisplay" v-show="menuDisplay" to="/shop") Shop
-            NuxtLink(class="w-full font-[600] text-white py-[5px]" @click="toggleMenuDisplay" v-show="menuDisplay" to="/contact") Contact
+            NuxtLink(class="w-fit font-[600] text-white py-[5px]" @click="toggleMenuDisplay" v-show="menuDisplay" to="/home") Home
+            NuxtLink(class="w-fit font-[600] text-white py-[5px]" @click="toggleMenuDisplay" v-show="menuDisplay" to="/shop") Shop
+            NuxtLink(class="w-fit font-[600] text-white py-[5px]" @click="toggleMenuDisplay" v-show="menuDisplay" to="/contact") Contact
             //- .mini-container-02(class="w-full flex flex-col")
 
 </template>
@@ -116,7 +116,8 @@ const languageDisplay = ref(false)
 const categoryDisplay = ref(false)
 const money = ref('VNĐ')
 const language = ref('VN')
-const categories = ['Shirts', 'Jeans', 'Swimwear', 'Sleepwear', 'Sportswear', 'Jumpsuits', 'Blazers', 'Jackets', 'Shoes']
+import {categories} from '../assets/main'
+// const categories = ['Shirts', 'Jeans', 'Swimwear', 'Sleepwear', 'Sportswear', 'Jumpsuits', 'Blazers', 'Jackets', 'Shoes']
 
 function moneyLoader() {
     const loadMoney = window.localStorage.getItem('money')
