@@ -3,10 +3,10 @@
     .navbar-desktop-container(class="hidden md:block")
         .line-01-container(class="w-full bg-[#F5F5F5] flex justify-between items-center px-[3rem] py-[0.25rem]")
             .left(class="flex items-center")
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer") About
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer") Contact
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer") Help
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer") FAQs
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:decoration-solid") About
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:decoration-solid") Contact
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:decoration-solid") Help
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:decoration-solid") FAQs
 
             .right(class="flex items-center")
                 .right-mini-01(class="relative ml-[16px] py-[0.25rem] px-[0.5rem] flex items-center bg-[#FFFFFF]")

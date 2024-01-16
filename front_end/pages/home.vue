@@ -3,15 +3,15 @@
     .part-01(class="h-fit w-full flex flex-col md:flex-row")
         .left(class="w-full md:w-[67%] h-[400px] md:h-[440px] mb-[2rem] md:mb-0 md:mr-[2rem] border-[2px]")
             div(class="relative w-full h-full")
-                img(src="@/assets/images/carousel-3.jpg" class="w-full h-full")
+                img(:src="categories[categorySelection].image" class="w-full h-full")
                 div(class="absolute w-full h-full mt-[-396px] md:mt-[-436px] bg-white opacity-[0.15]")
-                div(class="absolute w-full h-full mt-[-396px] md:mt-[-436px] flex justify-center items-center flex-col xl:px-[28%]")
-                    span(class="text-[3.5rem] text-center text-white mb-[1rem]") {{ categories[categorySelection].name }}
-                    span(class="text-center text-white mb-[1rem]") {{ categories[categorySelection].describe }}
-                    NuxtLink(class="border-[white] text-white border-[1px] py-[7px] px-[20px] mb-[5rem] hover:bg-white hover:text-black hover:cursor-pointer" to="/shop") Shop Now
+                div(class="absolute h-full mt-[-396px] w-full md:mt-[-436px] flex justify-center items-center flex-col px-[5%] xl:px-[28%]")
+                    span.category-content(class="text-[3.5rem] text-center text-white mb-[1rem] stroke-[black] stroke-1") {{ categories[categorySelection].name }}
+                    span.category-content(class="text-center text-white mb-[1rem] h-[9rem]") {{ categories[categorySelection].describe }}
+                    NuxtLink(class="border-[white] text-white border-[1px] py-[7px] px-[20px] mb-[2rem] hover:bg-white duration-[700ms] hover:text-black hover:cursor-pointer" to="/shop") Shop Now
                     div(class="flex")
-                        div(v-for="(category, index) in categories" class="w-[20px] h-[20px] border-white border-[1px] mx-[5px] hover:cursor-pointer" @click="categorySelection = index, test()" :class="{'selected' : categorySelection == index }")
-
+                        div(v-for="(category, index) in categories" class="w-[20px] h-[20px] border-white border-[1px] mx-[5px] duration-[700ms] hover:cursor-pointer" @click="categorySelection = index" :class="{'selected' : categorySelection == index }")
+            
 
         .right(class="md:w-[33%]")
             .right-mini-01(class="relative w-full h-[204px] mb-[2rem] border-[2px]")
@@ -71,9 +71,18 @@ import {categories} from '../assets/main'
 
 const categorySelection = ref(0)
 
-function test(){
-    console.log(categorySelection.value)
+const name = ref(categories[categorySelection.value].name)
+
+function nextCategory() {
+    categorySelection.value = categorySelection.value + 1
+    if(categorySelection.value == categories.length){
+        categorySelection.value = 0
+    }
 }
+// Gọi hàm nextCategory() mỗi 10 giây
+setInterval(nextCategory, 10000);
+
+
 </script>
 
 
@@ -86,11 +95,31 @@ function test(){
         font-weight: 700;
         color: #3D464D;
     }
+    .test{
+        display: block;
+    }
     .left{
         .selected{
             width: 30px;
             background-color: white;
         }
+        .category-content{
+            animation: showcontent 1s ease-in-out 1 forwards;
+            text-shadow: 0 0 5px black, 0 0 10px black, 0 0 15px black, 0 0 20px black;
+        }
+    }
+}
+
+@keyframes showcontent {
+    from{
+        opacity: 0;
+        transform: translate(0, 100px);
+        filter: blur(33px);
+    }
+    to{
+        opacity: 1;
+        transform: translate(0, 0);
+        filter: blur(0);
     }
 }
 </style>

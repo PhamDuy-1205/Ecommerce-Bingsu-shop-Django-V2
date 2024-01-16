@@ -1,5 +1,5 @@
 <template lang="pug">
-.item-container(class="w-full h-[110px] flex bg-white hover:bg-[#FFD333] hover:border-[2px] hover:border-black hover:cursor-pointer")
+.item-container(class="w-full h-[110px] flex bg-white hover:border-[1px] hover:border-[#3D464D] hover:cursor-pointer")
     .left(class="w-[30%] h-full")
         img(src="@/assets/images/cat-1.jpg" class="w-full h-full")
     .right(class="w-[70%] h-full flex flex-col select-none p-[5px]")
