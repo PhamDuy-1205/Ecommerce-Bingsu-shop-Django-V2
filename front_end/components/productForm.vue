@@ -1,5 +1,5 @@
 <template lang="pug">
-.item-container(class="w-fit flex flex-col bg-white p-[20px] hover:border-[1px] hover:border-[#3D464D] hover:cursor-pointer")
+NuxtLink(class="w-fit flex flex-col bg-white p-[20px] hover:border-[1px] hover:border-[#3D464D] hover:cursor-pointer" to="/shop/detail")
     .top(class="flex justify-center items-center")
         img(src="@/assets/images/product-1.jpg" class="w-full h-full")
     .bottom(class="flex justify-center items-center flex-col py-[10px] text-[#3D464D] font-[500]")

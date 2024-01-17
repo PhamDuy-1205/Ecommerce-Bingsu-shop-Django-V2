@@ -4,10 +4,10 @@
         NuxtLink(class="mr-[10px] hover:cursor-pointer hover:font-[500]" to="/home") Home
         span(class="mr-[10px]") /
         NuxtLink(class="mr-[10px] hover:cursor-pointer hover:font-[500]") Shop
-    
-    .shop-page-container(class="flex")
-        .filter-bar(class="w-[20%] min-w-[20rem]")
-            .filter-by-price(class="w-full mb-[1.5rem]")
+
+    .shop-page-container(class="md:flex")
+        .filter-bar(class="w-full md:w-[20%] min-w-[20rem] block sm:flex md:block")
+            .filter-by-price(class="w-full mb-[1.5rem] sm:mr-[2rem] md:mr-[0rem]")
                 .title(class="flex justify-between items-center w-full mb-[1.5rem]")
                     span(class="text-[1.25rem] font-[500] text-[#3D464D] mr-[1rem]") FILTER BY PRICE
                     span.title-line()
@@ -26,31 +26,31 @@
                         span(class="border-[#e5e7eb] border-[1px] px-[10px] rounded-[7px]") {{ price.value }}
             
 
-        .product-container(class="w-[80%]")
-            .show-option(class="flex justify-end items-center")
+        .product-container(class="w-full md:w-[80%]")
+            .show-option(class="flex justify-center md:justify-end items-center")
                 .sorting()
-                    .button-sorting(class="relative p-[10px] bg-white flex justify-center items-center mr-[20px] mb-[10px] rounded-[10px]" @click="toggleShowSortingOptionDisplay")
+                    .button-sorting(class="relative p-[10px] bg-white flex justify-center items-center mr-[20px] mb-[10px] rounded-[10px] border-[#e5e7eb] border-[1px]" @click="toggleShowSortingOptionDisplay")
                         span(class="mr-[10px]") {{ selected_sorting_type }}
                         img(src="@/assets/icons/caret-down.png" class="w-[10px] h-[10px] mt-[5px]")
-                    .option(class="absolute p-[10px] bg-white flex justify-center items-start flex-col mr-[20px] z-[1] rounded-[10px]" v-show="showSortingOptionDisplay")
+                    .option(class="absolute p-[10px] bg-white flex justify-center items-start flex-col mr-[20px] z-[1] rounded-[10px] border-[#e5e7eb] border-[1px]" v-show="showSortingOptionDisplay")
                         span(v-for="(option, index) in sortingOptionList" class="w-full px-[5px] my-[5px] hover:cursor-pointer hover:font-[500] hover:bg-[#F5F5F5]" @click="selected_sorting_type = option") {{ option }}
 
 
                 .amount()
-                    .button-amount(class="relative p-[10px] bg-white flex justify-center items-center mr-[20px] mb-[10px] rounded-[10px]" @click="toggleShowAmountOptionDisplay")
+                    .button-amount(class="relative p-[10px] bg-white flex justify-center items-center mr-[20px] mb-[10px] rounded-[10px] border-[#e5e7eb] border-[1px]" @click="toggleShowAmountOptionDisplay")
                         span(class="mr-[10px]") {{ selected_amount_type }}
                         img(src="@/assets/icons/caret-down.png" class="w-[10px] h-[10px] mt-[5px]")
-                    .option(class="absolute p-[10px] bg-white flex justify-center items-start flex-col mr-[20px] z-[1] rounded-[10px]" v-show="showAmountOptionDisplay")
-                        span(v-for="(option, index) in amountOptionList" class="w-full px-[10px] my-[5px] hover:cursor-pointer hover:font-[500] hover:bg-[#F5F5F5]" @click="selected_amount_type = option") {{ option }}
+                    .option(class="absolute py-[10px] bg-white flex justify-center items-start flex-col mr-[20px] z-[1] rounded-[10px] border-[#e5e7eb] border-[1px]" v-show="showAmountOptionDisplay")
+                        span(v-for="(option, index) in amountOptionList" class="w-full px-[20px] my-[5px] hover:cursor-pointer hover:font-[500] hover:bg-[#F5F5F5]" @click="selected_amount_type = option") {{ option }}
 
-            .product(class="p-[2rem] grid gap-4 grid-cols-4")
+            .product(class="p-[2rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
                 div(v-for="item in 12") <productForm />
             
             .pagination(class="flex justify-center items-center")
-                .previous(class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] mr-[10px] rounded-[10px]")
+                .previous(class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] mr-[10px] rounded-[10px]"  @click="previous_page")
                     img(src="@/assets/icons/arrow-down-sign-to-navigate.png" class="w-[20px] h-[20px] rotate-[90deg]")
-                .page-number(v-for="(page, index) in 4" class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] mr-[10px] rounded-[10px]" :class="{'selected-pagination': current_pagination == index}" @click="current_pagination = index") {{ index + 1 }}
-                .next(class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] rounded-[10px]")
+                .page-number(v-for="(page, index) in page_amount" class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] mr-[10px] rounded-[10px]" :class="{'selected-pagination': current_pagination == index}" @click="current_pagination = index") {{ index + 1 }}
+                .next(class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] rounded-[10px]" @click="next_page")
                     img(src="@/assets/icons/arrow-down-sign-to-navigate.png" class="w-[20px] h-[20px] rotate-[-90deg]")
 </template>
 
@@ -163,6 +163,9 @@ const sizeList = [
 ]
 // >>>>>>>>>>>>>>>>>>>> Pagination Zone END <<<<<<<<<<<<<<<<<<<<
 const current_pagination = ref(0)
+const page_amount = 5
+const previous_page = () => {current_pagination.value > 0 ? current_pagination.value = current_pagination.value - 1 : current_pagination.value = current_pagination.value}
+const next_page = () => {current_pagination.value < page_amount-1 ? current_pagination.value = current_pagination.value + 1 : current_pagination.value = current_pagination.value}
 // >>>>>>>>>>>>>>>>>>>> Pagination Zone START <<<<<<<<<<<<<<<<<<<<
 
 
