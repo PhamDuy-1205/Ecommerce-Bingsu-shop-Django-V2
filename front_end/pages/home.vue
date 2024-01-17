@@ -32,7 +32,7 @@
 
     .part-02(class="flex justify-between items-center flex-col md:flex-row my-[5rem] text-[1.25rem] font-[500]")
         .box-01(class="w-full py-[30px] px-[30px] flex justify-start items-center bg-white md:mr-[3rem]")
-            img(src="@/assets/icons/check-yellow.png" class="w-[59px] h-[48px]")
+            img(src="@/assets/icons/yellow-check.png" class="w-[59px] h-[48px]")
             span(class="font-[500] text-[1.25rem]") Quality Product
         .box-01(class="w-full py-[30px] px-[30px] mt-[2rem] flex justify-start items-center bg-white md:mt-0 md:mr-[3rem]")
             img(src="@/assets/icons/yellow-truck.png" class="w-[59px] h-[48px] mr-[10px]")

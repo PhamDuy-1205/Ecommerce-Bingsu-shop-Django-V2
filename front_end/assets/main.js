@@ -51,3 +51,6 @@ const runtimeConfig = useRuntimeConfig();
 export const getImgUrl = (filename) => {
   return `${filename}`;
 };
+
+
+export const sizeList = ['XS', 'S', 'M', 'L', 'XL']
