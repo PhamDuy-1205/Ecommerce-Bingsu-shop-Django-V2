@@ -1,11 +1,11 @@
 <template>
-    <div class="header-layout min-w-[500px]">
+    <div class="header-layout">
         <headerForm />
     </div>
-    <div class="body-layout px-[1rem] py-[1.8rem] md:px-[3rem] min-w-[500px]">
+    <div class="body-layout px-[1rem] py-[1.8rem] md:px-[3rem]">
         <slot />
     </div>
-    <div class="footer-layout min-w-[500px]">
+    <div class="footer-layout">
         <footerForm />
     </div>
 </template>

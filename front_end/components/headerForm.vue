@@ -3,10 +3,10 @@
     .navbar-desktop-container(class="hidden md:block")
         .line-01-container(class="w-full bg-[#F5F5F5] flex justify-between items-center px-[3rem] py-[0.25rem]")
             .left(class="flex items-center")
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:underline") About
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:underline") Contact
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:underline") Help
-                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:underline") FAQs
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:text-black active:translate-y-[1px]") About
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:text-black active:translate-y-[1px]") Contact
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:text-black active:translate-y-[1px]") Help
+                p(class="mr-[16px] text-[#6C757D] hover:cursor-pointer hover:text-black active:translate-y-[1px]") FAQs
 
             .right(class="flex items-center")
                 .right-mini-01(class="relative ml-[16px] py-[0.25rem] px-[0.5rem] flex items-center bg-[#FFFFFF]")
@@ -36,8 +36,8 @@
                 span(class="text-[2rem] font-[700] px-[0.5rem] bg-[#3D464D] text-[#FFD333]") BINGSU
                 span(class="text-[2rem] font-[700] px-[0.5rem] bg-[#FFD333] text-[#3D464D]") STORE
             .search-bar-container(class="flex border-[1px] w-[35%]")
-                input(class="w-full py-[6px] px-[12px] outline-[#FFD333]")
-                img(src="@/assets/icons/magnifying-glass.png" class="w-[37px] h-full p-[10px] bg-white border-l-[1px]  hover:cursor-pointer")
+                input(class="w-full py-[6px] px-[12px] outline-[#FFD333]" placeholder="Search for product")
+                img(src="@/assets/icons/magnifying-glass.png" class="w-[37px] h-full p-[10px] bg-white border-l-[1px]  hover:cursor-pointer active:translate-y-[1px]")
             .customer-Service-container(class="flex justify-center items-end flex-col")
                 span(class="font-[400] text-[#6C757D]") Customer Service
                 span(class="text-[1.25rem] font-[500] text-[#6C757D") +012 345 6789
@@ -57,10 +57,11 @@
                     NuxtLink(class="text-white mr-[1rem] hover:cursor-pointer hover:text-[#FFD333]" to="/shop") Shop
                     NuxtLink(class="text-white mr-[1rem] hover:cursor-pointer hover:text-[#FFD333]" to="/contact") Contact
             .right(class="flex")
-                img(src="@/assets/icons/heart.png" class="w-[25px] hover:cursor-pointer")
-                span(class="ml-[5px] border-white border-[1px] rounded-[50%] px-[7px] text-white hover:cursor-pointer") 0
+                NuxtLink(class="flex")
+                    img(src="@/assets/icons/heart.png" class="w-[25px] active:translate-y-[1px] hover:cursor-pointer")
+                    span(class="ml-[5px] border-white border-[1px] rounded-[50%] px-[7px] text-white hover:cursor-pointer") 0
                 NuxtLink(to="/shop/cart" class="flex")
-                    img(src="@/assets/icons/carts.png" class="w-[25px] ml-5 hover:cursor-pointer")
+                    img(src="@/assets/icons/carts.png" class="w-[25px] ml-5 active:translate-y-[1px] hover:cursor-pointer")
                     span(class="ml-[5px] border-white border-[1px] rounded-[50%] px-[7px] text-white hover:cursor-pointer") 0
             
 

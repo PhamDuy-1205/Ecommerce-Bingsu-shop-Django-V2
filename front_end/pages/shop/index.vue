@@ -13,7 +13,7 @@
                     span.title-line()
                 .board-container(class="bg-white px-[20px] py-[1rem]")
                     .left(v-for="(price, index) in priceList" class="flex justify-between items-center py-[5px] font-[500]")
-                        span(class="text-[1rem] hover:cursor-pointer hover:text-[#FFD333]") {{ price.name }}
+                        span(class="text-[1rem] hover:cursor-pointer hover:text-black active:translate-y-[1px]") {{ price.name }}
                         span(class="border-[#e5e7eb] border-[1px] px-[10px] rounded-[7px]") {{ price.value }}
                         
             .filter-by-size(class="w-full mb-[1.5rem]")
@@ -22,7 +22,7 @@
                     span.title-line()
                 .board-container(class="bg-white px-[20px] py-[1rem]")
                     .left(v-for="(price, index) in sizeList" class="flex justify-between items-center py-[5px] font-[500]")
-                        span(class="text-[1rem] hover:cursor-pointer hover:text-[#FFD333]") {{ price.name }}
+                        span(class="text-[1rem] hover:cursor-pointer hover:text-black active:translate-y-[1px]") {{ price.name }}
                         span(class="border-[#e5e7eb] border-[1px] px-[10px] rounded-[7px]") {{ price.value }}
             
 
