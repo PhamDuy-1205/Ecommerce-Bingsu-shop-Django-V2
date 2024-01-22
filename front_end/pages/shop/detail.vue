@@ -32,7 +32,7 @@
                     input(v-model="itemInCart" class="w-[40px] text-[1.25rem] font-[500] flex justify-center items-center outline-none text-center bg-[#e5e7eb]")
                     .plus(class="hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px] rounded-r-[5px]" @click="increaseItemInCart")
                         img(src="@/assets/icons/black-plus.png" class="w-[20px] h-[20px] m-[10px]")
-                .add-btn(class="h-[40px] flex justify-center items-center text-[1rem] font-[500] ml-[1rem] px-[15px] rounded-[5px] hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px]")
+                .add-btn(class="h-[40px] flex justify-center items-center text-[1rem] font-[500] ml-[1rem] px-[15px] rounded-[5px] hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px]" @click="handleAddToCart()")
                     img(src="@/assets/icons/black-shopping-cart.png" class="w-[20px] h-[20px] mr-[10px]")
                     span(class="h-[20px]") ADD TO CART
             .share(class="flex justify-start items-center mt-[2rem]")
@@ -51,39 +51,36 @@
                     span() Your email address will not be published. Required fields are marked *
                 div(class="text-[1rem] font-[500] mb-[2rem] flex items-center")
                     span(class="mr-[20px]") Your Rating * :
-                    img(v-for="item in 5" src="@/assets/icons/yellow-star.png" class="w-[16px] h-[16px] mx-[3px] mt-[2px] hover:cursor-pointer active:translate-y-[1px]")
+                    img(v-for="(item, index) in 5" :src="item<=(rate+1) ? '/_nuxt/assets/icons/yellow-star.png' : '/_nuxt/assets/icons/white-star.png'" class="w-[16px] h-[16px] mx-[3px] mt-[2px] hover:cursor-pointer active:translate-y-[1px]" @click="rate = index")
                 div(class="flex flex-col mb-[1rem]")
                     span() Your Review * :
-                    textarea(class="h-[7rem] w-full p-[10px] border-[1px]")
+                    textarea(class="h-[7rem] w-full p-[10px] border-[1px]" v-model="reviewContent")
                 div(class="flex flex-col mb-[1rem]")
                     span() Your Name * :
-                    textarea(class="h-[3rem] w-full p-[10px] border-[1px]")
+                    textarea(class="h-[3rem] w-full p-[10px] border-[1px]" v-model="reviewer")
                 div(class="flex flex-col mb-[1rem]")
                     span() Your Email * :
-                    textarea(class="h-[3rem] w-full p-[10px] border-[1px]")
-                .send-review-container()
+                    textarea(class="h-[3rem] w-full p-[10px] border-[1px]" v-model="reviewerEmail")
+                .send-review-container(@click="sendReview()")
                     .send-review-btn(class="w-fit p-[10px] rounded-[20px] bg-[#FFD333] active:translate-y-[1px] hover:cursor-pointer")
                         span(class="font-[700]") Send Review
 
             .right(class="w-[55%] mx-[1rem]")
                 .title(class="text-[1.5rem] font-[700] mb-[2rem]")
-                    span() 1 review for "Product Name"
+                    span() {{ reviewList.length }} review for "Product Name"
                 .review-item-container(class="max-h-[32rem] p-[15px] overflow-auto")
-                    .review-item(v-for="item in detailItemReview" class="w-full flex border-[1px] border-[#3D464D] p-[10px] mb-[30px] rounded-[20px] shadow-lg max-h-[30rem] overflow-auto")
+                    .review-item(v-for="review in reviewList" class="w-full flex border-[1px] border-[#3D464D] p-[10px] mb-[30px] rounded-[20px] shadow-lg max-h-[30rem] overflow-auto")
                         .avatar(class="h-fit min-w-[40px] rounded-[50%] mr-[0.5rem] border-[1px] border-[#3D464D]")
                             img(src="@/assets/icons/black-user-avatar.png" class="w-[40px] h-[40px] m-[10px]")
                         .info()
                             .part-01(class="flex mb-[0.5rem]")
-                                .name(class="font-[500]") {{ item.name }}
+                                .name(class="font-[500]") {{ review.name }}
                                 span(class="mx-[10px]") -
-                                .date(class="font-[500]") {{ item.date }}
+                                .date(class="font-[500]") {{ review.date }}
                             .part-02(class="flex mb-[0.5rem]")
-                                img(v-for="item in item.star_vote" src="@/assets/icons/yellow-star.png" class="w-[13px] h-[13px] mx-[3px] mt-[2px]")
+                                img(v-for="item in review.star_vote" src="@/assets/icons/yellow-star.png" class="w-[13px] h-[13px] mx-[3px] mt-[2px]")
                             .part-03(class="max-w-[53rem] max-h-[10rem] overflow-auto")
-                                span(class="font-[400]") {{ item.review_content }}
-                
-        
-
+                                span(class="font-[400]") {{ review.review_content }}
 </template>
 
 
@@ -101,7 +98,26 @@
 
 
 <script setup>
-import { sizeList, detailItemReview } from '@/assets/main'
+import { detailItemReview, sizeList } from '@/assets/main'
+
+const reviewList = ref(detailItemReview)
+const reviewContent = ref('')
+const reviewer = ref('')
+const reviewerEmail = ref('')
+const rate = ref(0)
+function sendReview(){
+    const newReview = {
+        'name': reviewer.value.trim(),
+        'date': new Date().toLocaleDateString(),
+        'star_vote': (rate.value) + 1,
+        'review_content': reviewContent.value.trim(),
+    };
+    reviewList.value.unshift(newReview)
+    reviewContent.value = ''
+    reviewer.value = ''
+    reviewerEmail.value = ''
+    rate.value = 0
+}
 
 const current_size = ref(0)
 
@@ -112,4 +128,18 @@ const decreaseItemInCart = () => {
     }
 }
 const increaseItemInCart = () => { itemInCart.value++ }
+
+function handleAddToCart() {
+    console.log(`Add to cart ${itemInCart.value} product size ${current_size.value}`)
+    if(itemInCart.value < 0){
+        alert('Unable product amount')
+        itemInCart.value = 0
+        return
+    }
+    else if(itemInCart.value == 0){
+        return alert('How many amout of this product do you wanna buy?') 
+    }
+    current_size.value = 0
+    itemInCart.value = 0
+}
 </script>
