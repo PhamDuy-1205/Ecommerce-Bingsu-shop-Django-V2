@@ -130,3 +130,27 @@ export const detailItemReview = [
     //     'review_content' : "I am writing to express my extreme anger and disappointment with the scam I fell victim to on my recent purchase from Martin. $2000 for a brick is beyond outrageous, and I demand a resolution and accountability",
     // },
 ]
+
+
+export const productInCart = [
+    {
+        'name': 'Product 01',
+        'price': 150,
+        'quantity': 1,
+    },
+    {
+        'name': 'Product 02',
+        'price': 75,
+        'quantity': 1,
+    },
+    {
+        'name': 'Product 03',
+        'price': 120,
+        'quantity': 1,
+    },
+    {
+        'name': 'Product 04',
+        'price': 20,
+        'quantity': 1,
+    },
+]

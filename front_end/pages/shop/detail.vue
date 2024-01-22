@@ -16,7 +16,7 @@
                 img(v-for="item in 5" src="@/assets/icons/yellow-star.png" class="w-[13px] h-[13px] mx-[3px] mt-[2px]")
                 span(class="ml-[5px]") (99 Reviews)
             div(class="text-[2rem] font-[700] mt-[0.3rem]") $150.00
-            div(class="h-[15rem] text-[1.125rem] mt-[1rem] p-[20px] border-[1px] overflow-auto") Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy
+            div(class="h-[15rem] text-[1.125rem] mt-[1rem] p-[20px] border-[1px] rounded-[10px] overflow-auto") Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy
             .size(class="flex items-center mt-[1rem]")
                 span(class="text-[1.3rem] font-[700] mr-[0.75rem]") Sizes:
                 div(class="grid gap-1 grid-cols-2 xs:grid-cols-3 sm:grid-cols-5")
@@ -43,15 +43,16 @@
                 img(src="@/assets/icons/black-instagram.png" class="w-[20px] h-[20px] ml-[12px] hover:cursor-pointer active:translate-y-[1px]")
 
     .part-02(class="p-[20px] bg-white")
-        .review-container(class="flex")
-            .left(class="w-[35%] flex flex-col ml-[1rem] mr-[5rem]")
+        .review-container(class="lg:flex")
+            .left(class="w-full lg:w-[35%] flex flex-col ml-[1rem] pr-[1rem] mr-[5rem]")
                 div(class="text-[1.5rem] font-[700] mb-[2rem]")
                         span() Leave a review
                 div(class="text-[13px] mb-[2rem]")
                     span() Your email address will not be published. Required fields are marked *
-                div(class="text-[1rem] font-[500] mb-[2rem] flex items-center")
+                div(class="text-[1rem] font-[500] mb-[2rem] items-center xs:flex")
                     span(class="mr-[20px]") Your Rating * :
-                    img(v-for="(item, index) in 5" :src="item<=(rate+1) ? '/_nuxt/assets/icons/yellow-star.png' : '/_nuxt/assets/icons/white-star.png'" class="w-[16px] h-[16px] mx-[3px] mt-[2px] hover:cursor-pointer active:translate-y-[1px]" @click="rate = index")
+                    div(class="flex")
+                        img(v-for="(item, index) in 5" :src="item<=(rate+1) ? '/_nuxt/assets/icons/yellow-star.png' : '/_nuxt/assets/icons/white-star.png'" class="w-[16px] h-[16px] mx-[3px] mt-[2px] hover:cursor-pointer active:translate-y-[1px]" @click="rate = index")
                 div(class="flex flex-col mb-[1rem]")
                     span() Your Review * :
                     textarea(class="h-[7rem] w-full p-[10px] border-[1px]" v-model="reviewContent")
@@ -65,21 +66,21 @@
                     .send-review-btn(class="w-fit p-[10px] rounded-[20px] bg-[#FFD333] active:translate-y-[1px] hover:cursor-pointer")
                         span(class="font-[700]") Send Review
 
-            .right(class="w-[55%] mx-[1rem]")
+            .right(class="w-full lg:w-[55%] mx-[1rem]")
                 .title(class="text-[1.5rem] font-[700] mb-[2rem]")
                     span() {{ reviewList.length }} review for "Product Name"
                 .review-item-container(class="max-h-[32rem] p-[15px] overflow-auto")
                     .review-item(v-for="review in reviewList" class="w-full flex border-[1px] border-[#3D464D] p-[10px] mb-[30px] rounded-[20px] shadow-lg max-h-[30rem] overflow-auto")
-                        .avatar(class="h-fit min-w-[40px] rounded-[50%] mr-[0.5rem] border-[1px] border-[#3D464D]")
+                        .avatar(class="h-fit min-w-[60px] rounded-[50%] mr-[0.5rem] border-[1px] border-[#3D464D]")
                             img(src="@/assets/icons/black-user-avatar.png" class="w-[40px] h-[40px] m-[10px]")
                         .info()
-                            .part-01(class="flex mb-[0.5rem]")
+                            .name-time(class="sm:flex mb-[0.5rem]")
                                 .name(class="font-[500]") {{ review.name }}
-                                span(class="mx-[10px]") -
+                                span(class="hidden mx-[10px] sm:block") -
                                 .date(class="font-[500]") {{ review.date }}
-                            .part-02(class="flex mb-[0.5rem]")
+                            .rate-star(class="flex mb-[1rem]")
                                 img(v-for="item in review.star_vote" src="@/assets/icons/yellow-star.png" class="w-[13px] h-[13px] mx-[3px] mt-[2px]")
-                            .part-03(class="max-w-[53rem] max-h-[10rem] overflow-auto")
+                            .review-content(class="max-w-[53rem] max-h-[10rem] ml-[-4rem] overflow-auto sm:ml-0")
                                 span(class="font-[400]") {{ review.review_content }}
 </template>
 
