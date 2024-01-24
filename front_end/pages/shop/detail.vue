@@ -9,14 +9,14 @@
 
     .part-01(class="flex justify-between flex-col mb-[2rem] xl:flex-row")
         .left(class="w-full p-[2rem] bg-white xl:w-[39%]")
-            img(src="@/assets/images/product-1.jpg" class="w-full")
+            img(:src="detailProduct.image" class="w-full")
         .right(class="w-full p-[2rem] bg-white text-[#3D464D] xl:w-[59%]")
-            div(class="text-[2rem] font-[700]") Product Name
+            div(class="text-[2rem] font-[700]") {{ detailProduct.name }}
             .star(class="flex items-center mt-[0.3rem]")
                 img(v-for="item in 5" src="@/assets/icons/yellow-star.png" class="w-[13px] h-[13px] mx-[3px] mt-[2px]")
                 span(class="ml-[5px]") (99 Reviews)
-            div(class="text-[2rem] font-[700] mt-[0.3rem]") $150.00
-            div(class="h-[15rem] text-[1.125rem] mt-[1rem] p-[20px] border-[1px] rounded-[10px] overflow-auto") Volup erat ipsum diam elitr rebum et dolor. Est nonumy elitr erat diam stet sit clita ea. Sanc ipsum et, labore clita lorem magna duo dolor no sea Nonumy
+            div(class="text-[2rem] font-[700] mt-[0.3rem]") ${{ detailProduct.price }}
+            div(class="h-[15rem] text-[1.125rem] mt-[1rem] p-[20px] border-[1px] rounded-[10px] overflow-auto") {{ detailProduct.description }}
             .size(class="flex items-center mt-[1rem]")
                 span(class="text-[1.3rem] font-[700] mr-[0.75rem]") Sizes:
                 div(class="grid gap-1 grid-cols-2 xs:grid-cols-3 sm:grid-cols-5")
@@ -27,12 +27,12 @@
                         span(class="font-[500]") {{item}}
             .add-to.cart(class="flex justify-center items-center flex-col mt-[1.5rem] xs:flex-row xs:justify-start")
                 .amount-btn(class="flex mb-[1rem] xs:mb-[0rem] bg-[#e5e7eb] rounded-[5px]")
-                    .minus(class="hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px] rounded-l-[5px]" @click="decreaseItemInCart")
+                    .minus(class="hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px] rounded-l-[5px]" @click="itemInCart > 1 ? itemInCart-- : itemInCart")
                         img(src="@/assets/icons/black-minus.png" class="w-[20px] h-[20px] m-[10px]")
-                    input(v-model="itemInCart" class="w-[40px] text-[1.25rem] font-[500] flex justify-center items-center outline-none text-center bg-[#e5e7eb]")
-                    .plus(class="hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px] rounded-r-[5px]" @click="increaseItemInCart")
+                    input(v-model="itemInCart" @blur="itemInCart=checkQuantity(itemInCart)" class="w-[40px] text-[1.25rem] font-[500] flex justify-center items-center outline-none text-center bg-[#e5e7eb]")
+                    .plus(class="hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px] rounded-r-[5px]" @click="itemInCart++")
                         img(src="@/assets/icons/black-plus.png" class="w-[20px] h-[20px] m-[10px]")
-                .add-btn(class="h-[40px] flex justify-center items-center text-[1rem] font-[500] ml-[1rem] px-[15px] rounded-[5px] hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px]" @click="handleAddToCart()")
+                .add-btn(class="h-[40px] flex justify-center items-center text-[1rem] font-[500] ml-[1rem] px-[15px] rounded-[5px] hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px]" @click="addToCart(detailProduct.id, detailProduct.name, detailProduct.price, detailProduct.image, detailProduct.description)")
                     img(src="@/assets/icons/black-shopping-cart.png" class="w-[20px] h-[20px] mr-[10px]")
                     span(class="h-[20px]") ADD TO CART
             .share(class="flex justify-start items-center mt-[2rem]")
@@ -99,7 +99,10 @@
 
 
 <script setup>
-import { detailItemReview, sizeList } from '@/assets/main'
+import { detailItemReview, sizeList } from '@/common/data'
+import { checkQuantity, addToCart } from '@/common/funtion'
+
+const detailProduct = JSON.parse(localStorage.getItem('product_detail'))
 
 const reviewList = ref(detailItemReview)
 const reviewContent = ref('')
@@ -122,25 +125,5 @@ function sendReview(){
 
 const current_size = ref(0)
 
-const itemInCart = ref(0)
-const decreaseItemInCart = () => {
-    if(itemInCart.value > 0) {
-        itemInCart.value--
-    }
-}
-const increaseItemInCart = () => { itemInCart.value++ }
-
-function handleAddToCart() {
-    console.log(`Add to cart ${itemInCart.value} product size ${current_size.value}`)
-    if(itemInCart.value < 0){
-        alert('Unable product amount')
-        itemInCart.value = 0
-        return
-    }
-    else if(itemInCart.value == 0){
-        return alert('How many amout of this product do you wanna buy?') 
-    }
-    current_size.value = 0
-    itemInCart.value = 0
-}
+const itemInCart = ref(1)
 </script>

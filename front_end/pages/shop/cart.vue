@@ -20,11 +20,11 @@ div(class="w-full py-[10px] px-[15px] flex items-center mb-[2rem] bg-white selec
                     p(class="text-[#6C757D] text-[1.25rem]") {{ product.name }}
                 .price(class="w-[20%] flex justify-center items-center")
                     p(class="text-[#6C757D] text-[1.25rem]") {{ product.price }}$
-                .quantity(class="w-[20%] flex justify-center items-center")
-                    div(class="flex justify-center items-center rounded-l-[5px] px-[10px] active:translate-y-[0.5px] hover:cursor-pointer bg-[#FFD333]" @click="product.quantity > 1 ? product.quantity-- : product.quantity=1 ; calcTotalPrice()")
+                .quantity(class="w-[20%] min-w-[8.75rem] flex justify-center items-center")
+                    div(class="flex justify-center items-center rounded-l-[5px] px-[10px] active:translate-y-[0.5px] hover:cursor-pointer bg-[#FFD333]" @click="product.quantity > 1 ? product.quantity-- : product.quantity ; calcTotalPrice()")
                         img(src="@/assets/icons/black-minus.png" class="w-[20px] my-[10px]")
-                    input(class="h-[40px] w-[50px] text-center text-[#6C757D] text-[1.25rem] px-[5px] border-[1px]" v-model="product.quantity" @blur="product.quantity=handleQuantity(product.quantity)")
-                    div(class="flex justify-center items-center rounded-r-[5px] px-[10px] active:translate-y-[0.5px] hover:cursor-pointer bg-[#FFD333]" @click="product.quantity >= 1 ? product.quantity++ : product.quantity=1 ; calcTotalPrice()")
+                    input(class="h-[40px] w-[50px] text-center text-[#6C757D] text-[1.25rem] px-[5px] border-[1px]" v-model="product.quantity" @blur="product.quantity=checkQuantity(product.quantity)")
+                    div(class="flex justify-center items-center rounded-r-[5px] px-[10px] active:translate-y-[0.5px] hover:cursor-pointer bg-[#FFD333]" @click="product.quantity++ ; calcTotalPrice()")
                         img(src="@/assets/icons/black-plus.png" class="w-[20px] my-[10px]")
                     
                 .total(class="w-[20%] flex justify-center items-center")
@@ -32,8 +32,8 @@ div(class="w-full py-[10px] px-[15px] flex items-center mb-[2rem] bg-white selec
                 .remove(class="w-[10%] flex justify-center items-center" @click="removeProductFromCart(index), calcTotalPrice()")
                     span(class="w-[30px] h-auto flex justify-center items-center font-[800] rounded-[5px] active:translate-y-[0.5px] hover:cursor-pointer bg-red-500") X
     .check(class="w-[26rem]")
-        .coupon-container(class="w-full h-[3rem] flex pl-[20px] text-[16px] font-[500] border-[1px] border-[black] rounded-[10px] mb-[1rem] bg-white")
-            input(class="w-[80%] h-full outline-none" placeholder="Coupon Code") 
+        .coupon-container(class="w-full h-[3rem] flex pl-[20px] text-[16px] font-[500] border-[1px] border-[black] rounded-[9px] mb-[1rem] bg-white")
+            input(class="w-[80%] h-full outline-none rounded-l-[10px]" placeholder="Coupon Code") 
             div(class="w-[20%] h-full flex justify-center items-center flex-col border-l-[1px] border-l-[black] rounded-r-[10px] active:translate-y-[0.5px] hover:cursor-pointer bg-[#FFD333]")
                 span() Apply
                 span() Coupon
@@ -51,18 +51,19 @@ div(class="w-full py-[10px] px-[15px] flex items-center mb-[2rem] bg-white selec
                     .detail(class="flex justify-between items-center text-[1rem] font-[500]")
                         span() Total
                         span() ${{ totalPrice }}
-                .checkout()
+                NuxtLink(class="flex justify-center items-center active:translate-y-[0.5px] hover:cursor-pointer" to="/shop/checkout")
+                    .checkout-btn(class="flex justify-center items-center p-[10px] rounded-[10px] bg-[#FFD333]")
+                        p(class="text-[1rem] font-[500]") Proceed To Checkout
 </template>
 
 
 <script setup>
-import { productInCart } from "@/assets/main";
+import { productInCart } from "@/common/data";
+import { checkQuantity } from '@/common/funtion'
 const productList = ref(productInCart)
 
 function removeProductFromCart(params) {
-    console.log(productList.value)
     productList.value.splice(params, 1)
-    console.log(productList.value)
 }
 
 const totalPrice = ref(0);
@@ -74,14 +75,5 @@ function calcTotalPrice() {
     totalPrice.value = price;
 }
 calcTotalPrice()
-
-function handleQuantity(params) {
-    if(params < 1 || params == null || typeof(params) != Number){
-        return 1
-    }
-    else{
-        return params
-    }
-}
 
 </script>

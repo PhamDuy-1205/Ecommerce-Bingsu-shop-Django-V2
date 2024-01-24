@@ -111,14 +111,13 @@
 
 <script setup>
 //========================================  Desktop Start  ========================================
+import { categories } from '@/common/data'
 const myAccountDisplay = ref(false)
 const moneyDisplay = ref(false)
 const languageDisplay = ref(false)
 const categoryDisplay = ref(false)
 const money = ref('VNĐ')
 const language = ref('VN')
-import {categories} from '../assets/main'
-// const categories = ['Shirts', 'Jeans', 'Swimwear', 'Sleepwear', 'Sportswear', 'Jumpsuits', 'Blazers', 'Jackets', 'Shoes']
 
 function moneyLoader() {
     const loadMoney = window.localStorage.getItem('money')

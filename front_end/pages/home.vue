@@ -47,7 +47,8 @@
     .part-03(class="flex flex-col mb-[5rem]")
         span.title() CATEGORIES
         .categories-container(class="w-full mt-[1rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
-            div(v-for="item in 12") <categoryForm /> 
+            //- div(v-for="item in 12") <categoryForm /> 
+            categoryForm(v-for="category in categories" :id="category.id", :name="category.name", :image="category.image")
 
     .part-04(class="flex flex-col mb-[5rem]")
         span.title() FEATURED PRODUCTS
@@ -67,7 +68,8 @@
 
 
 <script setup>
-import {categories} from '../assets/main'
+import { categories } from '@/common/data'
+import categoryForm from '@/components/categoryForm.vue'
 
 const categorySelection = ref(0)
 

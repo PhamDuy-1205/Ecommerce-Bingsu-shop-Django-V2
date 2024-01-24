@@ -1,3 +1,70 @@
+export const product = [
+    {
+        'id' : '01',
+        'name': 'Camera',
+        'price': 2500,
+        'image' : '/_nuxt/assets/images/product-1.jpg',
+        'description' : "Embrace the art of photography with this sophisticated black Canon camera. Its sleek design not only captures moments but adds a touch of elegance to your creative pursuits.",
+    },
+    {
+        'id' : '02',
+        'name': 'Sweater',
+        'price': 90,
+        'image' : '/_nuxt/assets/images/product-2.jpg',
+        'description' : "Wrap yourself in comfort and style with this navy blue woolen sweater. The rich hue complements any outfit, providing warmth and a timeless fashion statement.",
+    },
+    {
+        'id' : '03',
+        'name': 'Lamp',
+        'price': 70,
+        'image' : '/_nuxt/assets/images/product-3.jpg',
+        'description' : "Illuminate your nights with the gentle glow of a brown bedside lamp. Its warm light creates a cozy ambiance, perfect for unwinding after a long day.",
+    },
+    {
+        'id' : '04',
+        'name': 'Nike shoes',
+        'price': 120,
+        'image' : '/_nuxt/assets/images/product-4.jpg',
+        'description' : "Step out in urban chic with these black Nike sneakers. Combining comfort and fashion, these shoes are a versatile choice for both active pursuits and casual outings.",
+    },
+    {
+        'id' : '05',
+        'name': 'Fly Cam',
+        'price': 5000,
+        'image' : '/_nuxt/assets/images/product-5.jpg',
+        'description' : "Soar to new heights with this white fly cam drone. Capture breathtaking aerial views and unleash your creativity in the world of aerial photography.",
+    },
+    {
+        'id' : '06',
+        'name': 'China Smart Watch',
+        'price': 5000,
+        'image' : '/_nuxt/assets/images/product-6.jpg',
+        'description' : "Stay connected and in control with this modern smartwatch. Its sleek design houses powerful features, keeping you on top of your schedule and health goals.",
+    },
+    {
+        'id' : '07',
+        'name': 'Girl Shirt',
+        'price': 20,
+        'image' : '/_nuxt/assets/images/product-7.jpg',
+        'description' : "Make a bold statement with this elegant black women's fashion top. The intricate design and flattering fit ensure you stand out with sophistication.",
+    },
+    {
+        'id' : '08',
+        'name': 'Curology',
+        'price': 75,
+        'image' : '/_nuxt/assets/images/product-8.jpg',
+        'description' : "Indulge in luxurious skincare with this Curology-branded jar. Packed with nourishing ingredients, it's a testament to a radiant and healthy complexion.",
+    },
+    {
+        'id' : '09',
+        'name': 'Office Chair',
+        'price': 165,
+        'image' : '/_nuxt/assets/images/product-9.jpg',
+        'description' : "Elevate your workspace with this sky blue office chair. Designed for both comfort and style, it transforms your office into a vibrant and inspiring environment.",
+    },
+]
+
+
 export const categories = [
     {
         'name' : 'Shirts',
@@ -45,12 +112,6 @@ export const categories = [
         'image' : '/_nuxt/assets/images/category/shoes.jpg',
     },
 ];
-
-
-const runtimeConfig = useRuntimeConfig();
-export const getImgUrl = (filename) => {
-  return `${filename}`;
-};
 
 
 export const sizeList = ['XS', 'S', 'M', 'L', 'XL']
@@ -152,72 +213,5 @@ export const productInCart = [
         'name': 'Product 04',
         'price': 20,
         'quantity': 1,
-    },
-]
-
-
-export const product = [
-    {
-        'id' : '01',
-        'name': 'Camera',
-        'price': 2500,
-        'image' : '/_nuxt/assets/images/product-1.jpg',
-        'description' : "Embrace the art of photography with this sophisticated black Canon camera. Its sleek design not only captures moments but adds a touch of elegance to your creative pursuits.",
-    },
-    {
-        'id' : '02',
-        'name': 'Sweater',
-        'price': 90,
-        'image' : '/_nuxt/assets/images/product-2.jpg',
-        'description' : "Wrap yourself in comfort and style with this navy blue woolen sweater. The rich hue complements any outfit, providing warmth and a timeless fashion statement.",
-    },
-    {
-        'id' : '03',
-        'name': 'Lamp',
-        'price': 70,
-        'image' : '/_nuxt/assets/images/product-3.jpg',
-        'description' : "Illuminate your nights with the gentle glow of a brown bedside lamp. Its warm light creates a cozy ambiance, perfect for unwinding after a long day.",
-    },
-    {
-        'id' : '04',
-        'name': 'Nike shoes',
-        'price': 120,
-        'image' : '/_nuxt/assets/images/product-4.jpg',
-        'description' : "Step out in urban chic with these black Nike sneakers. Combining comfort and fashion, these shoes are a versatile choice for both active pursuits and casual outings.",
-    },
-    {
-        'id' : '05',
-        'name': 'Fly Cam',
-        'price': 5000,
-        'image' : '/_nuxt/assets/images/product-5.jpg',
-        'description' : "Soar to new heights with this white fly cam drone. Capture breathtaking aerial views and unleash your creativity in the world of aerial photography.",
-    },
-    {
-        'id' : '06',
-        'name': 'China Smart Watch',
-        'price': 5000,
-        'image' : '/_nuxt/assets/images/product-6.jpg',
-        'description' : "Stay connected and in control with this modern smartwatch. Its sleek design houses powerful features, keeping you on top of your schedule and health goals.",
-    },
-    {
-        'id' : '07',
-        'name': 'Girl Shirt',
-        'price': 20,
-        'image' : '/_nuxt/assets/images/product-7.jpg',
-        'description' : "Make a bold statement with this elegant black women's fashion top. The intricate design and flattering fit ensure you stand out with sophistication.",
-    },
-    {
-        'id' : '08',
-        'name': 'Curology',
-        'price': 75,
-        'image' : '/_nuxt/assets/images/product-8.jpg',
-        'description' : "Indulge in luxurious skincare with this Curology-branded jar. Packed with nourishing ingredients, it's a testament to a radiant and healthy complexion.",
-    },
-    {
-        'id' : '09',
-        'name': 'Office Chair',
-        'price': 165,
-        'image' : '/_nuxt/assets/images/product-9.jpg',
-        'description' : "Elevate your workspace with this sky blue office chair. Designed for both comfort and style, it transforms your office into a vibrant and inspiring environment.",
     },
 ]

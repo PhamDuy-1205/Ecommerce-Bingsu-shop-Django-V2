@@ -44,7 +44,7 @@
                         span(v-for="(option, index) in amountOptionList" class="w-full px-[20px] my-[5px] hover:cursor-pointer hover:font-[500] hover:bg-[#F5F5F5]" @click="selected_amount_type = option") {{ option }}
 
             .product(class="p-[2rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
-                div(v-for="item in 12") <productForm />
+                productForm(v-for="product in productList" :id="product.id" :name="product.name" :price="product.price" :image="product.image" :description="description" :key="product.id" @click="setProductDetailToStorage(product.id, product.name, product.price, product.image, product.description)")
             
             .pagination(class="flex justify-center items-center")
                 .previous(class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] mr-[10px] rounded-[10px]"  @click="previous_page")
@@ -56,6 +56,10 @@
 
 
 <script setup lang="ts">
+import productForm from '@/components/productForm.vue'
+import { product as productList } from "@/common/data"
+import { setProductDetailToStorage } from "@/common/funtion"
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 // >>>>>>>>>>>>>>>>>>>> Show Option Zone START <<<<<<<<<<<<<<<<<<<<
 const selected_sorting_type = ref('Latest');
@@ -87,22 +91,18 @@ const disableShowAmountOptionDisplay = (event: MouseEvent) => {
 
 onMounted(() => {
     window.addEventListener('click', disableShowSortingOptionDisplay);
-    console.log('onMounted: On')
 });
 
 onBeforeUnmount(()=>{
-    window.removeEventListener('click', disableShowSortingOptionDisplay)
-    console.log('onMounted: Off')
+    window.removeEventListener('click', disableShowSortingOptionDisplay);
 })
 
 onMounted(() => {
     window.addEventListener('click', disableShowAmountOptionDisplay);
-    console.log('onMounted: On')
 });
 
 onBeforeUnmount(()=>{
-    window.removeEventListener('click', disableShowAmountOptionDisplay)
-    console.log('onMounted: Off')
+    window.removeEventListener('click', disableShowAmountOptionDisplay);
 })
 // >>>>>>>>>>>>>>>>>>>> Show Option Zone END <<<<<<<<<<<<<<<<<<<<
 
@@ -161,13 +161,18 @@ const sizeList = [
         'value' : '168',
     },
 ]
-// >>>>>>>>>>>>>>>>>>>> Pagination Zone END <<<<<<<<<<<<<<<<<<<<
+
+
+// >>>>>>>>>>>>>>>>>>>> Product Zone START <<<<<<<<<<<<<<<<<<<<
+// >>>>>>>>>>>>>>>>>>>> Product Zone END <<<<<<<<<<<<<<<<<<<<
+
+
+// >>>>>>>>>>>>>>>>>>>> Pagination Zone START <<<<<<<<<<<<<<<<<<<<
 const current_pagination = ref(0)
 const page_amount = 5
 const previous_page = () => {current_pagination.value > 0 ? current_pagination.value = current_pagination.value - 1 : current_pagination.value = current_pagination.value}
 const next_page = () => {current_pagination.value < page_amount-1 ? current_pagination.value = current_pagination.value + 1 : current_pagination.value = current_pagination.value}
-// >>>>>>>>>>>>>>>>>>>> Pagination Zone START <<<<<<<<<<<<<<<<<<<<
-
+// >>>>>>>>>>>>>>>>>>>> Pagination Zone END <<<<<<<<<<<<<<<<<<<<
 
 </script>
 
