@@ -62,7 +62,7 @@
                     span(class="ml-[5px] border-white border-[1px] rounded-[50%] px-[7px] text-white hover:cursor-pointer") 0
                 NuxtLink(to="/shop/cart" class="flex")
                     img(src="@/assets/icons/carts.png" class="w-[25px] ml-5 active:translate-y-[1px] hover:cursor-pointer")
-                    span(class="ml-[5px] border-white border-[1px] rounded-[50%] px-[7px] text-white hover:cursor-pointer") 0
+                    span(class="ml-[5px] border-white border-[1px] rounded-[50%] px-[7px] text-white hover:cursor-pointer") {{ itemsInCartAmount }}
             
 
     .navbar-mobile-container(class="md:hidden")
@@ -118,6 +118,15 @@ const languageDisplay = ref(false)
 const categoryDisplay = ref(false)
 const money = ref('VNĐ')
 const language = ref('VN')
+const itemsInCartAmount = computed(()=>{
+    var list = JSON.parse(localStorage.getItem('shoppingCart'))
+    if(list){
+        return list.length
+    }
+    else{
+        return 0
+    }
+})
 
 function moneyLoader() {
     const loadMoney = window.localStorage.getItem('money')
@@ -204,6 +213,7 @@ const toggleMenuDisplay = () => {
 }
 
 //========================================  Mobile End  ========================================
+
 
 </script>
 

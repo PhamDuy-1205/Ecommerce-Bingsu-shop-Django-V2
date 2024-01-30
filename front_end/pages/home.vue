@@ -53,14 +53,14 @@
     .part-04(class="flex flex-col mb-[5rem]")
         span.title() FEATURED PRODUCTS
         .categories-container(class="mt-[1rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
-            div(v-for="item in 8") <productForm /> 
+            productForm(v-for="product in featuredProduct" :id="product.id" :name="product.name" :price="product.price" :image="product.image" :description="product.description" :key="product.id" @click="setProductDetailToStorage(product.id, product.name, product.price, product.image, product.description)")
 
     .part-05(class="flex mb-[5rem]")
 
     .part-06(class="flex flex-col mb-[5rem]")
         span.title() RECENT PRODUCTS
         .categories-container(class="mt-[1rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
-            div(v-for="item in 8") <productForm /> 
+            productForm(v-for="product in recentProduct" :id="product.id" :name="product.name" :price="product.price" :image="product.image" :description="product.description" :key="product.id" @click="setProductDetailToStorage(product.id, product.name, product.price, product.image, product.description)")
 
     .part-07(class="flex")
 </template>
@@ -68,8 +68,9 @@
 
 
 <script setup>
-import { categories } from '@/common/data'
+import { categories, product } from '@/common/data'
 import categoryForm from '@/components/categoryForm.vue'
+import { setProductDetailToStorage } from "@/common/funtion"
 
 const categorySelection = ref(0)
 
@@ -85,11 +86,25 @@ function nextCategory() {
 setInterval(nextCategory, 10000);
 
 
+const featuredProduct = computed(()=>{
+    var list = []
+    var productList = product
+    for(var i=0; i<product.length; i++){
+        if(list.length < 8){
+            list.push(product[i])
+        }
+    }
+    return list
+})
+
+const recentProduct = JSON.parse(localStorage.getItem('recentProduct'));
+
+
 </script>
 
 
 
-<style>
+<style lang="scss">
 #home-page{
     color: #6C757D;
     .title{

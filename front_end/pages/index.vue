@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-window.location.href = "./home";
+window.location.href = "/home";
 </script>

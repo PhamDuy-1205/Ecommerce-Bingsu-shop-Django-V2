@@ -32,7 +32,7 @@
                     input(v-model="itemInCart" @blur="itemInCart=checkQuantity(itemInCart)" class="w-[40px] text-[1.25rem] font-[500] flex justify-center items-center outline-none text-center bg-[#e5e7eb]")
                     .plus(class="hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px] rounded-r-[5px]" @click="itemInCart++")
                         img(src="@/assets/icons/black-plus.png" class="w-[20px] h-[20px] m-[10px]")
-                .add-btn(class="h-[40px] flex justify-center items-center text-[1rem] font-[500] ml-[1rem] px-[15px] rounded-[5px] hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px]" @click="addToCart(detailProduct.id, detailProduct.name, detailProduct.price, detailProduct.image, detailProduct.description)")
+                .add-btn(class="h-[40px] flex justify-center items-center text-[1rem] font-[500] ml-[1rem] px-[15px] rounded-[5px] hover:cursor-pointer bg-[#FFD333] active:translate-y-[1px]" @click="addToCart(detailProduct.id, detailProduct.name, detailProduct.price, detailProduct.image, detailProduct.description, itemInCart)")
                     img(src="@/assets/icons/black-shopping-cart.png" class="w-[20px] h-[20px] mr-[10px]")
                     span(class="h-[20px]") ADD TO CART
             .share(class="flex justify-start items-center mt-[2rem]")
@@ -103,12 +103,15 @@ import { detailItemReview, sizeList } from '@/common/data'
 import { checkQuantity, addToCart } from '@/common/funtion'
 
 const detailProduct = JSON.parse(localStorage.getItem('product_detail'))
-
 const reviewList = ref(detailItemReview)
 const reviewContent = ref('')
 const reviewer = ref('')
 const reviewerEmail = ref('')
 const rate = ref(0)
+const current_size = ref(0)
+const itemInCart = ref(1)
+
+
 function sendReview(){
     const newReview = {
         'name': reviewer.value.trim(),
@@ -123,7 +126,6 @@ function sendReview(){
     rate.value = 0
 }
 
-const current_size = ref(0)
 
-const itemInCart = ref(1)
+
 </script>

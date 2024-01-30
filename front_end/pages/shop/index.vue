@@ -44,7 +44,7 @@
                         span(v-for="(option, index) in amountOptionList" class="w-full px-[20px] my-[5px] hover:cursor-pointer hover:font-[500] hover:bg-[#F5F5F5]" @click="selected_amount_type = option") {{ option }}
 
             .product(class="p-[2rem] grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4")
-                productForm(v-for="product in productList" :id="product.id" :name="product.name" :price="product.price" :image="product.image" :description="description" :key="product.id" @click="setProductDetailToStorage(product.id, product.name, product.price, product.image, product.description)")
+                productForm(v-for="product in productList" :id="product.id" :name="product.name" :price="product.price" :image="product.image" :description="product.description" :key="product.id" @click="setProductDetailToStorage(product.id, product.name, product.price, product.image, product.description)")
             
             .pagination(class="flex justify-center items-center")
                 .previous(class="flex justify-center items-center border-[#e5e7eb] border-[1px] px-[15px] h-[2rem] mr-[10px] rounded-[10px]"  @click="previous_page")
