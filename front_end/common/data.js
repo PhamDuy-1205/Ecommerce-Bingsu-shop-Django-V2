@@ -215,3 +215,19 @@ export const productInCart = [
         'quantity': 1,
     },
 ]
+
+
+export const paymentTypes = [
+    {
+        id : 1,
+        name: 'Momo'
+    },
+    {
+        id : 2,
+        name: 'Bank'
+    },
+    {
+        id : 3,
+        name: 'Cast'
+    },
+]
